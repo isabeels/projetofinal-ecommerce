@@ -1,4 +1,4 @@
-# projetofinal-ecommerce
+Projeto final da disciplina de APIRestful - E-commerce
 
 Uma empresa varejista deseja cria um software que controle todo o seu estoque de produtos, clientes, funcionários e suas vendas, as vendas serão feitas pela internet, a seguir são descritos os requisitos e os dados que a empresa julga serem necessários para o funcionamento do sistema.
 

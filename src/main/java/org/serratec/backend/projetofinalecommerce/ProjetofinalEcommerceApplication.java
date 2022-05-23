@@ -1,4 +1,4 @@
-package org.serratec.backend.projetofinalecommerce.projetofinalecommerce;
+package org.serratec.backend.projetofinalecommerce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

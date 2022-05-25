@@ -1,6 +1,6 @@
 package org.serratec.backend.projetofinalecommerce.entity;
 
-import java.sql.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +14,9 @@ import javax.persistence.Table;
 public class Funcionario {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "funcionario_cd_id")
-	private Integer idFuncionario;
+	private UUID idFuncionario;
 
 	@Column(name = "funcionario_tx_nomeCompleto")
 	private String nomeCompleto;
@@ -28,18 +28,18 @@ public class Funcionario {
 		
 	}
 
-	public Funcionario(Integer idFuncionario, String nomeCompleto, Integer cpf) {
+	public Funcionario(UUID idFuncionario, String nomeCompleto, Integer cpf) {
 		super();
 		this.idFuncionario = idFuncionario;
 		this.nomeCompleto = nomeCompleto;
 		this.cpf = cpf;
 	}
 
-	public Integer getIdFuncionario() {
+	public UUID getIdFuncionario() {
 		return idFuncionario;
 	}
 
-	public void setIdFuncionario(Integer idFuncionario) {
+	public void setIdFuncionario(UUID idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
 

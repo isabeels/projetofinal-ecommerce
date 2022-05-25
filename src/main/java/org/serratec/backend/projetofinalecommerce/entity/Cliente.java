@@ -1,6 +1,8 @@
 package org.serratec.backend.projetofinalecommerce.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +13,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="cliente")
-public class Cliente {
+public class Cliente implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="cliente_cd_id")
-	private Integer idCliente;
+	private UUID idCliente;
+
 	
 	@Column(name="cliente_tx_nomeCompleto")
 	private String nomeCompleto;
@@ -34,7 +39,7 @@ public class Cliente {
 	private Date dataNascimento;
 	
 	@Column(name="cliente_tx_endereco")
-	private String endereço;
+	private String endereco;
 	
 	@Column(name="cliente_tx_numero_telefone")
 	private Integer telefone;
@@ -44,8 +49,8 @@ public class Cliente {
 	
 	public Cliente() {}
 	
-	public Cliente(Integer idCliente, String nomeCompleto, String nomeUsuario, String email, Integer cpf,
-			Date dataNascimento, String endereço, Integer telefone) {
+	public Cliente(UUID idCliente, String nomeCompleto, String nomeUsuario, String email, Integer cpf,
+			Date dataNascimento, String endereco, Integer telefone) {
 		super();
 		this.idCliente = idCliente;
 		this.nomeCompleto = nomeCompleto;
@@ -53,17 +58,17 @@ public class Cliente {
 		this.email = email;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
-		this.endereço = endereço;
+		this.endereco = endereco;
 		this.telefone = telefone;
 	}
 
 	//Getters e Setters
 	
-	public Integer getIdCliente() {
+	public UUID getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(Integer idCliente) {
+	public void setIdCliente(UUID idCliente) {
 		this.idCliente = idCliente;
 	}
 
@@ -107,12 +112,12 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEndereço() {
-		return endereço;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public Integer getTelefone() {

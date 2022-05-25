@@ -2,11 +2,11 @@ package org.serratec.backend.projetofinalecommerce.repository;
 
 import java.util.UUID;
 
-import org.serratec.backend.projetofinalecommerce.entity.Cliente;
+import org.serratec.backend.projetofinalecommerce.entity.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, UUID> {
+public interface CategoriaRepository extends JpaRepository<Categoria, UUID> {
 
 }

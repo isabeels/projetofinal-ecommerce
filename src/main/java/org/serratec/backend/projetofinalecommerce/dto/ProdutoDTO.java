@@ -1,33 +1,53 @@
 package org.serratec.backend.projetofinalecommerce.dto;
 
-import java.util.UUID;
-
+import java.time.LocalDate;
 
 public class ProdutoDTO {
 
-	
-	private UUID idFuncionario;
-	private String nomeCompleto;
-	private Integer cpf;
-	
-	
-	public UUID getIdFuncionario() {
-		return idFuncionario;
+	private String nomeProduto;
+	private String descricaoProduto;
+	private Double valorUnitarioProduto;
+	private LocalDate dataValidadeProduto;
+	private Integer estoqueProduto;
+
+	public String getNomeProduto() {
+		return nomeProduto;
 	}
-	public void setIdFuncionario(UUID idFuncionario) {
-		this.idFuncionario = idFuncionario;
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
 	}
-	public String getNomeCompleto() {
-		return nomeCompleto;
+
+	public String getDescricaoProduto() {
+		return descricaoProduto;
 	}
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+
+	public void setDescricaoProduto(String descricaoProduto) {
+		this.descricaoProduto = descricaoProduto;
 	}
-	public Integer getCpf() {
-		return cpf;
+
+	public Double getValorUnitarioProduto() {
+		return valorUnitarioProduto;
 	}
-	public void setCpf(Integer cpf) {
-		this.cpf = cpf;
+
+	public void setValorUnitarioProduto(Double valorUnitarioProduto) {
+		this.valorUnitarioProduto = valorUnitarioProduto;
 	}
-	
+
+	public LocalDate getDataValidadeProduto() {
+		return dataValidadeProduto;
+	}
+
+	public void setDataValidadeProduto(LocalDate dataValidadeProduto) {
+		this.dataValidadeProduto = dataValidadeProduto;
+	}
+
+	public Integer getEstoqueProduto() {
+		return estoqueProduto;
+	}
+
+	public void setEstoqueProduto(Integer estoqueProduto) {
+		this.estoqueProduto = estoqueProduto;
+	}
+
 }

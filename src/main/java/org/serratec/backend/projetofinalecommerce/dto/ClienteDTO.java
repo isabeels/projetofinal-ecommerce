@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class ClienteDTO {
 	
-	private UUID idCliente;
+	private Integer idCliente;
 	private String nomeCompleto;
 	private String nomeUsuario;
 	private String email;
@@ -16,10 +16,11 @@ public class ClienteDTO {
 	private Integer telefone;
 	
 	
-	public UUID getIdCliente() {
+	
+	public Integer getIdCliente() {
 		return idCliente;
 	}
-	public void setIdCliente(UUID idCliente) {
+	public void setIdCliente(Integer idCliente) {
 		this.idCliente = idCliente;
 	}
 	public String getNomeCompleto() {

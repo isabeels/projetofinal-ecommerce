@@ -2,7 +2,6 @@ package org.serratec.backend.projetofinalecommerce.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,38 +9,43 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table (name = "produto")
+@Table(name = "produto")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID idProduto;
-	
-	@Column (name = "produto_tx_nome")
-	private String nomeProduto;
-	
-	@Column (name = "produto_tx_descricao" )
-	private String descricaoProduto;
-	
-	@Column (name = "produto_nu_valor")
-	private Double valorUnitarioProduto;
-	
-	@Column (name = "produto_dt_validade")
-	private LocalDate dataValidadeProduto;
-	
-	@Column (name = "produto_nu_estoque")
-	private Integer estoqueProduto;
-	
-	public Produto() {}
+	private Integer idProduto;
 
-	
-	public Produto(UUID idProduto, String nomeProduto, String descricaoProduto, Double valorUnitarioProduto,
+	@NotBlank
+	@Column(name = "produto_tx_nome")
+	private String nomeProduto;
+
+	@NotBlank
+	@Column(name = "produto_tx_descricao")
+	private String descricaoProduto;
+
+	@NotBlank
+	@Column(name = "produto_nu_valor")
+	private Double valorUnitarioProduto;
+
+	@NotBlank
+	@Column(name = "produto_dt_validade")
+	private LocalDate dataValidadeProduto;
+
+	@NotBlank
+	@Column(name = "produto_nu_estoque")
+	private Integer estoqueProduto;
+
+	public Produto() {
+	}
+
+	public Produto(Integer idProduto, String nomeProduto, String descricaoProduto, Double valorUnitarioProduto,
 			LocalDate dataValidadeProduto, Integer estoqueProduto) {
-		super();
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
 		this.descricaoProduto = descricaoProduto;
@@ -50,11 +54,11 @@ public class Produto implements Serializable {
 		this.estoqueProduto = estoqueProduto;
 	}
 
-	public UUID getIdProduto() {
+	public Integer getIdProduto() {
 		return idProduto;
 	}
 
-	public void setIdProduto(UUID idProduto) {
+	public void setIdProduto(Integer idProduto) {
 		this.idProduto = idProduto;
 	}
 

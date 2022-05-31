@@ -1,9 +1,9 @@
 package org.serratec.backend.projetofinalecommerce.dto;
 
 public class CategoriaDTO {
-	/* @NotBlank */
+	
+	
 	private String nomeCategoria;
-	/* @NotBlank */
 	private String descricaoCategoria;
 
 	public String getNomeCategoria() {

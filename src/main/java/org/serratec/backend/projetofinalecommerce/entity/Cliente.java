@@ -2,7 +2,6 @@ package org.serratec.backend.projetofinalecommerce.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,48 +9,57 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="cliente")
+@Table(name = "cliente")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="cliente_cd_id")
-	private UUID idCliente;
-
+	@Column(name = "cliente_cd_id")
+	private Integer idCliente;
 	
-	@Column(name="cliente_tx_nomeCompleto")
+    @NotBlank
+	@Column(name = "cliente_tx_nomeCompleto")
 	private String nomeCompleto;
-	
-	@Column(name="cliente_tx_nomeUsuario")
+    
+    @NotBlank
+	@Column(name = "cliente_tx_nomeUsuario")
 	private String nomeUsuario;
-	
-	@Column(name="cliente_tx_email")
+    
+    @NotBlank
+	@Email
+	@Column(name = "cliente_tx_email")
 	private String email;
-	
-	@Column(name="cliente_tx_cpf")
+    
+    @NotBlank
+    @Size(min = 11, max = 11)
+	@Column(name = "cliente_tx_cpf")
 	private Integer cpf;
-	
-	@Column(name="cliente_dt_nascimento")
+    
+    @NotBlank
+	@Column(name = "cliente_dt_nascimento")
 	private Date dataNascimento;
-	
-	@Column(name="cliente_tx_endereco")
+    
+    @NotBlank
+	@Column(name = "cliente_tx_endereco")
 	private String endereco;
-	
-	@Column(name="cliente_tx_numero_telefone")
+
+    @NotBlank
+	@Column(name = "cliente_tx_numero_telefone")
 	private Integer telefone;
-	
-	
-	//Construtores
-	
-	public Cliente() {}
-	
-	public Cliente(UUID idCliente, String nomeCompleto, String nomeUsuario, String email, Integer cpf,
+
+	// Construtores
+	public Cliente() {
+	}
+
+	public Cliente(Integer idCliente, String nomeCompleto, String nomeUsuario, String email, Integer cpf,
 			Date dataNascimento, String endereco, Integer telefone) {
-		super();
 		this.idCliente = idCliente;
 		this.nomeCompleto = nomeCompleto;
 		this.nomeUsuario = nomeUsuario;
@@ -62,18 +70,17 @@ public class Cliente implements Serializable {
 		this.telefone = telefone;
 	}
 
-	//Getters e Setters
-	
-	public UUID getIdCliente() {
+	// Getters e Setters
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
+
+	public Integer getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(UUID idCliente) {
+	public void setIdCliente(Integer idCliente) {
 		this.idCliente = idCliente;
-	}
-
-	public String getNomeCompleto() {
-		return nomeCompleto;
 	}
 
 	public void setNomeCompleto(String nomeCompleto) {
@@ -127,7 +134,5 @@ public class Cliente implements Serializable {
 	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
 	}
-	
+
 }
-
-

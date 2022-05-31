@@ -1,30 +1,31 @@
 package org.serratec.backend.projetofinalecommerce.dto;
 
-import java.util.UUID;
-
-
 public class FuncionarioDTO {
 
-	private UUID idFuncionario;
+	private Integer idFuncionario;
 	private String nomeCompleto;
 	private Integer cpf;
-	
-	
-	public UUID getIdFuncionario() {
+
+	public Integer getIdFuncionario() {
 		return idFuncionario;
 	}
-	public void setIdFuncionario(UUID idFuncionario) {
+
+	public void setIdFuncionario(Integer idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
+
 	public String getNomeCompleto() {
 		return nomeCompleto;
 	}
+
 	public void setNomeCompleto(String nomeCompleto) {
 		this.nomeCompleto = nomeCompleto;
 	}
+
 	public Integer getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(Integer cpf) {
 		this.cpf = cpf;
 	}

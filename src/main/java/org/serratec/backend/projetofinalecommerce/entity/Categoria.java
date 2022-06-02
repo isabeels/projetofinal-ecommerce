@@ -17,14 +17,15 @@ public class Categoria implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "categoria_cd_id")
 	private Integer idCategoria;
-	
+
 	@NotBlank
-	@Column(name = "categoria_tx_nome", nullable = false)
+	@Column(name = "categoria_tx_nome")
 	private String nomeCategoria;
-	
+
 	@NotBlank
-	@Column(name = "categoria_tx_descricao", nullable = false)
+	@Column(name = "categoria_tx_descricao")
 	private String descricaoCategoria;
 
 	public Categoria() {
@@ -35,7 +36,6 @@ public class Categoria implements Serializable {
 		this.nomeCategoria = nomeCategoria;
 		this.descricaoCategoria = descricaoCategoria;
 	}
-
 
 	public Integer getIdCategoria() {
 		return idCategoria;

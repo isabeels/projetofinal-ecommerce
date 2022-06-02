@@ -1,8 +1,7 @@
 package org.serratec.backend.projetofinalecommerce.dto;
 
 public class CategoriaDTO {
-	
-	
+
 	private String nomeCategoria;
 	private String descricaoCategoria;
 

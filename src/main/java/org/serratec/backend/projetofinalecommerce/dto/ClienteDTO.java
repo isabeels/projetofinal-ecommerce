@@ -15,7 +15,6 @@ public class ClienteDTO {
 	private String enderecoCliente;
 	private Integer telefoneCliente;
 
-
 	public Integer getIdCliente() {
 		return idCliente;
 	}

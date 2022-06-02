@@ -18,7 +18,8 @@ public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "produto_cd_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProduto;
 
 	@NotBlank
@@ -31,27 +32,28 @@ public class Produto implements Serializable {
 
 	@NotBlank
 	@Column(name = "produto_nu_valor")
-	private Double valorUnitarioProduto;
+	private Double valorUnitario;
 
 	@NotBlank
-	@Column(name = "produto_dt_validade")
-	private LocalDate dataValidadeProduto;
+	@Column(name = "produto_dt_fabricacao")
+	private LocalDate dataFabricacao;
 
 	@NotBlank
 	@Column(name = "produto_nu_estoque")
-	private Integer estoqueProduto;
+	private Integer qtdEstoque;
 
 	public Produto() {
 	}
 
-	public Produto(Integer idProduto, String nomeProduto, String descricaoProduto, Double valorUnitarioProduto,
-			LocalDate dataValidadeProduto, Integer estoqueProduto) {
+	public Produto(Integer idProduto, @NotBlank String nomeProduto, @NotBlank String descricaoProduto,
+			@NotBlank Double valorUnitario, @NotBlank LocalDate dataFabricacao, @NotBlank Integer qtdEstoque) {
+		super();
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
 		this.descricaoProduto = descricaoProduto;
-		this.valorUnitarioProduto = valorUnitarioProduto;
-		this.dataValidadeProduto = dataValidadeProduto;
-		this.estoqueProduto = estoqueProduto;
+		this.valorUnitario = valorUnitario;
+		this.dataFabricacao = dataFabricacao;
+		this.qtdEstoque = qtdEstoque;
 	}
 
 	public Integer getIdProduto() {
@@ -78,28 +80,29 @@ public class Produto implements Serializable {
 		this.descricaoProduto = descricaoProduto;
 	}
 
-	public Double getValorUnitarioProduto() {
-		return valorUnitarioProduto;
+	public Double getValorUnitario() {
+		return valorUnitario;
 	}
 
-	public void setValorUnitarioProduto(Double valorUnitarioProduto) {
-		this.valorUnitarioProduto = valorUnitarioProduto;
+	public void setValorUnitario(Double valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
 
-	public LocalDate getDataValidadeProduto() {
-		return dataValidadeProduto;
+	public LocalDate getDataFabricacao() {
+		return dataFabricacao;
 	}
 
-	public void setDataValidadeProduto(LocalDate dataValidadeProduto) {
-		this.dataValidadeProduto = dataValidadeProduto;
+	public void setDataFabricacao(LocalDate dataFabricacao) {
+		this.dataFabricacao = dataFabricacao;
 	}
 
-	public Integer getEstoqueProduto() {
-		return estoqueProduto;
+	public Integer getQtdEstoque() {
+		return qtdEstoque;
 	}
 
-	public void setEstoqueProduto(Integer estoqueProduto) {
-		this.estoqueProduto = estoqueProduto;
+	public void setQtdEstoque(Integer qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
 	}
+
 
 }

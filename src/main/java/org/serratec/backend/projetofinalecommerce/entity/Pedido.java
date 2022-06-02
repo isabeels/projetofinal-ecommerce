@@ -30,7 +30,7 @@ public class Pedido {
 
 	public Pedido() {
 	}
-
+	
 	public Pedido(Integer idPedido, @NotBlank LocalDateTime dataPedido, @NotBlank Double valorTotalPedido) {
 		super();
 		this.idPedido = idPedido;

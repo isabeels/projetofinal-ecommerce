@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping ("/cliente")
 public class ClienteController {
 	//@GetMapping("/listarTodos")
-    
     //@GetMapping("/listar/{idCliente}")
     //@PostMapping("/")
     //@PostMapping("")

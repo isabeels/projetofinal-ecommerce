@@ -4,50 +4,50 @@ import java.time.LocalDate;
 
 public class ProdutoDTO {
 
+	private Integer idProduto;
 	private String nomeProduto;
 	private String descricaoProduto;
-	private Double valorUnitarioProduto;
-	private LocalDate dataValidadeProduto;
-	private Integer estoqueProduto;
-
+	private Double valorUnitario;
+	private LocalDate dataFabricacao;
+	private Integer qtdEstoque;
+	
+	
+	public Integer getIdProduto() {
+		return idProduto;
+	}
+	public void setIdProduto(Integer idProduto) {
+		this.idProduto = idProduto;
+	}
 	public String getNomeProduto() {
 		return nomeProduto;
 	}
-
 	public void setNomeProduto(String nomeProduto) {
 		this.nomeProduto = nomeProduto;
 	}
-
 	public String getDescricaoProduto() {
 		return descricaoProduto;
 	}
-
 	public void setDescricaoProduto(String descricaoProduto) {
 		this.descricaoProduto = descricaoProduto;
 	}
-
-	public Double getValorUnitarioProduto() {
-		return valorUnitarioProduto;
+	public Double getValorUnitario() {
+		return valorUnitario;
 	}
-
-	public void setValorUnitarioProduto(Double valorUnitarioProduto) {
-		this.valorUnitarioProduto = valorUnitarioProduto;
+	public void setValorUnitario(Double valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
-
-	public LocalDate getDataValidadeProduto() {
-		return dataValidadeProduto;
+	public LocalDate getDataFabricacao() {
+		return dataFabricacao;
 	}
-
-	public void setDataValidadeProduto(LocalDate dataValidadeProduto) {
-		this.dataValidadeProduto = dataValidadeProduto;
+	public void setDataFabricacao(LocalDate dataFabricacao) {
+		this.dataFabricacao = dataFabricacao;
 	}
-
-	public Integer getEstoqueProduto() {
-		return estoqueProduto;
+	public Integer getQtdEstoque() {
+		return qtdEstoque;
 	}
-
-	public void setEstoqueProduto(Integer estoqueProduto) {
-		this.estoqueProduto = estoqueProduto;
+	public void setQtdEstoque(Integer qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
 	}
-
+	
+	
 }

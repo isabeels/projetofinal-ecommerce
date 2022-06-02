@@ -3,31 +3,27 @@ package org.serratec.backend.projetofinalecommerce.dto;
 public class FuncionarioDTO {
 
 	private Integer idFuncionario;
-	private String nomeCompleto;
-	private Integer cpf;
-
+	private String nomeFuncionario;
+	private Integer cpfFuncionario;
+	
 	public Integer getIdFuncionario() {
 		return idFuncionario;
 	}
-
 	public void setIdFuncionario(Integer idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
-
-	public String getNomeCompleto() {
-		return nomeCompleto;
+	public String getNomeFuncionario() {
+		return nomeFuncionario;
 	}
-
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+	public void setNomeFuncionario(String nomeFuncionario) {
+		this.nomeFuncionario = nomeFuncionario;
 	}
-
-	public Integer getCpf() {
-		return cpf;
+	public Integer getCpfFuncionario() {
+		return cpfFuncionario;
 	}
-
-	public void setCpf(Integer cpf) {
-		this.cpf = cpf;
+	public void setCpfFuncionario(Integer cpfFuncionario) {
+		this.cpfFuncionario = cpfFuncionario;
 	}
+	
 
 }

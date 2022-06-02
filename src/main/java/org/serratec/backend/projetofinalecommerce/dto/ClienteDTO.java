@@ -1,70 +1,90 @@
 package org.serratec.backend.projetofinalecommerce.dto;
 
 import java.sql.Date;
-import java.util.UUID;
 
 
 public class ClienteDTO {
 	
 	private Integer idCliente;
-	private String nomeCompleto;
-	private String nomeUsuario;
-	private String email;
-	private Integer cpf;
-	private Date dataNascimento;
-	private String endereço;
-	private Integer telefone;
-	
-	
-	
+	private String nomeCliente;
+	private String loginCliente;
+	private String senhaCliente;
+	private String emailCliente;
+	private Integer cpfCliente;
+	private Date dataNasciCliente;
+	private String enderecoCliente;
+	private Integer telefoneCliente;
+
+
 	public Integer getIdCliente() {
 		return idCliente;
 	}
+
 	public void setIdCliente(Integer idCliente) {
 		this.idCliente = idCliente;
 	}
-	public String getNomeCompleto() {
-		return nomeCompleto;
+
+	public String getNomeCliente() {
+		return nomeCliente;
 	}
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
 	}
-	public String getNomeUsuario() {
-		return nomeUsuario;
+
+	public String getLoginCliente() {
+		return loginCliente;
 	}
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+
+	public void setLoginCliente(String loginCliente) {
+		this.loginCliente = loginCliente;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getSenhaCliente() {
+		return senhaCliente;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setSenhaCliente(String senhaCliente) {
+		this.senhaCliente = senhaCliente;
 	}
-	public Integer getCpf() {
-		return cpf;
+
+	public String getEmailCliente() {
+		return emailCliente;
 	}
-	public void setCpf(Integer cpf) {
-		this.cpf = cpf;
+
+	public void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
 	}
-	public Date getDataNascimento() {
-		return dataNascimento;
+
+	public Integer getCpfCliente() {
+		return cpfCliente;
 	}
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+
+	public void setCpfCliente(Integer cpfCliente) {
+		this.cpfCliente = cpfCliente;
 	}
-	public String getEndereço() {
-		return endereço;
+
+	public Date getDataNasciCliente() {
+		return dataNasciCliente;
 	}
-	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+
+	public void setDataNasciCliente(Date dataNasciCliente) {
+		this.dataNasciCliente = dataNasciCliente;
 	}
-	public Integer getTelefone() {
-		return telefone;
+
+	public String getEnderecoCliente() {
+		return enderecoCliente;
 	}
-	public void setTelefone(Integer telefone) {
-		this.telefone = telefone;
+
+	public void setEnderecoCliente(String enderecoCliente) {
+		this.enderecoCliente = enderecoCliente;
 	}
-	
-	
+
+	public Integer getTelefoneCliente() {
+		return telefoneCliente;
+	}
+
+	public void setTelefoneCliente(Integer telefoneCliente) {
+		this.telefoneCliente = telefoneCliente;
+	}
 }

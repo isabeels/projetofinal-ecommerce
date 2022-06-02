@@ -25,54 +25,57 @@ public class Cliente implements Serializable {
 	private Integer idCliente;
 	
     @NotBlank
-	@Column(name = "cliente_tx_nomeCompleto")
-	private String nomeCompleto;
+	@Column(name = "cliente_tx_nome")
+	private String nomeCliente;
     
     @NotBlank
-	@Column(name = "cliente_tx_nomeUsuario")
-	private String nomeUsuario;
+	@Column(name = "cliente_tx_login")
+	private String loginCliente;
     
     @NotBlank
 	@Email
 	@Column(name = "cliente_tx_email")
-	private String email;
+	private String emailCliente;
     
     @NotBlank
     @Size(min = 11, max = 11)
-	@Column(name = "cliente_tx_cpf")
-	private Integer cpf;
+	@Column(name = "cliente_nu_cpf")
+	private Integer cpfCliente;
     
     @NotBlank
 	@Column(name = "cliente_dt_nascimento")
-	private Date dataNascimento;
+	private Date dataNasciCliente;
     
     @NotBlank
 	@Column(name = "cliente_tx_endereco")
-	private String endereco;
+	private String enderecoCliente;
 
     @NotBlank
-	@Column(name = "cliente_tx_numero_telefone")
-	private Integer telefone;
+	@Column(name = "cliente_tx_telefone")
+	private Integer telefoneCliente;
 
 	// Construtores
 	public Cliente() {
 	}
 
-	public Cliente(Integer idCliente, String nomeCompleto, String nomeUsuario, String email, Integer cpf,
-			Date dataNascimento, String endereco, Integer telefone) {
+	public Cliente(
+			Integer idCliente,
+			String nomeCliente,
+			String loginCliente,
+			String emailCliente,
+			Integer cpfCliente,
+			Date dataNasciCliente,
+			String enderecoCliente,
+			Integer telefoneCliente
+	) {
 		this.idCliente = idCliente;
-		this.nomeCompleto = nomeCompleto;
-		this.nomeUsuario = nomeUsuario;
-		this.email = email;
-		this.cpf = cpf;
-		this.dataNascimento = dataNascimento;
-		this.endereco = endereco;
-		this.telefone = telefone;
-	}
-
-	// Getters e Setters
-	public String getNomeCompleto() {
-		return nomeCompleto;
+		this.nomeCliente = nomeCliente;
+		this.loginCliente = loginCliente;
+		this.emailCliente = emailCliente;
+		this.cpfCliente = cpfCliente;
+		this.dataNasciCliente = dataNasciCliente;
+		this.enderecoCliente = enderecoCliente;
+		this.telefoneCliente = telefoneCliente;
 	}
 
 	public Integer getIdCliente() {
@@ -83,56 +86,62 @@ public class Cliente implements Serializable {
 		this.idCliente = idCliente;
 	}
 
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+	public String getNomeCliente() {
+		return nomeCliente;
 	}
 
-	public String getNomeUsuario() {
-		return nomeUsuario;
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
 	}
 
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
+	public String getLoginCliente() {
+		return loginCliente;
 	}
 
-	public String getEmail() {
-		return email;
+	public void setLoginCliente(String loginCliente) {
+		this.loginCliente = loginCliente;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getEmailCliente() {
+		return emailCliente;
 	}
 
-	public Integer getCpf() {
-		return cpf;
+	public void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
 	}
 
-	public void setCpf(Integer cpf) {
-		this.cpf = cpf;
+	public Integer getCpfCliente() {
+		return cpfCliente;
 	}
 
-	public Date getDataNascimento() {
-		return dataNascimento;
+	public void setCpfCliente(Integer cpfCliente) {
+		this.cpfCliente = cpfCliente;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public Date getDataNasciCliente() {
+		return dataNasciCliente;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	public void setDataNasciCliente(Date dataNasciCliente) {
+		this.dataNasciCliente = dataNasciCliente;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public String getEnderecoCliente() {
+		return enderecoCliente;
 	}
 
-	public Integer getTelefone() {
-		return telefone;
+	public void setEnderecoCliente(String enderecoCliente) {
+		this.enderecoCliente = enderecoCliente;
 	}
 
-	public void setTelefone(Integer telefone) {
-		this.telefone = telefone;
+	public Integer getTelefoneCliente() {
+		return telefoneCliente;
 	}
+
+	public void setTelefoneCliente(Integer telefoneCliente) {
+		this.telefoneCliente = telefoneCliente;
+	}
+
+	// Getters e Setters
 
 }

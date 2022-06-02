@@ -20,7 +20,7 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cliente_cd_id")
 	private Integer idCliente;
 	
@@ -36,7 +36,11 @@ public class Cliente implements Serializable {
 	@Email
 	@Column(name = "cliente_tx_email")
 	private String emailCliente;
-    
+
+	@NotBlank
+	@Column(name = "cliente_tx_senha")
+	private String senhaCliente;
+
     @NotBlank
     @Size(min = 11, max = 11)
 	@Column(name = "cliente_nu_cpf")
@@ -76,6 +80,15 @@ public class Cliente implements Serializable {
 		this.dataNasciCliente = dataNasciCliente;
 		this.enderecoCliente = enderecoCliente;
 		this.telefoneCliente = telefoneCliente;
+	}
+
+
+	public String getSenhaCliente() {
+		return senhaCliente;
+	}
+
+	public void setSenhaCliente(String senhaCliente) {
+		this.senhaCliente = senhaCliente;
 	}
 
 	public Integer getIdCliente() {

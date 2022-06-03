@@ -67,7 +67,7 @@ public class PedidoService {
 		}
 	}
 
-	public PedidoDTO buscar(Integer idPedido) {
+	public PedidoDTO buscarPorId(Integer idPedido) {
 		return pedidoRepository.findById(idPedido).map(pedido -> transformarEntityEmDTO(pedido, new PedidoDTO()))
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado"));
 	}
@@ -103,8 +103,13 @@ public class PedidoService {
 		throw new PedidoException("Não foi possível atualizar o pedido");
 	}
 
-	public void deletar(Integer idPedido) {
+	public String deletarPorId(Integer idPedido) throws PedidoException {
+		Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
+		if (pedido.isPresent()) {
 		pedidoRepository.deleteById(idPedido);
+		return "O pedido id: " + pedido.get() + " foi deletado com sucesso!";
+		}
+		throw new PedidoException("O id informado não foi encontrado!");
 	}
 
 }

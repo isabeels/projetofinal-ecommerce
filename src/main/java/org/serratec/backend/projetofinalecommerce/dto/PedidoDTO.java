@@ -7,6 +7,8 @@ public class PedidoDTO {
 	private Integer idPedido;
 	private LocalDateTime dataPedido;
 	private Double valorTotalPedido;
+	private Integer idCliente;
+	private Integer idPProduto;
 
 	public Integer getIdPedido() {
 		return idPedido;
@@ -31,5 +33,22 @@ public class PedidoDTO {
 	public void setValorTotalPedido(Double valorTotalPedido) {
 		this.valorTotalPedido = valorTotalPedido;
 	}
+
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public Integer getIdPProduto() {
+		return idPProduto;
+	}
+
+	public void setIdPProduto(Integer idPProduto) {
+		this.idPProduto = idPProduto;
+	}
+	
 
 }

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -27,6 +29,10 @@ public class Pedido {
 	@NotBlank
 	@Column(name = "pedido_nu_valor")
 	private Double valorTotalPedido;
+	
+	@OneToMany
+	@JoinColumn(name="idCliente", referencedColumnName= "cliente_cd_id")
+	private Cliente cliente;
 
 	public Pedido() {
 	}
@@ -62,8 +68,13 @@ public class Pedido {
 		this.valorTotalPedido = valorTotalPedido;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Cliente getCliente() {
+		return cliente;
 	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 
 }

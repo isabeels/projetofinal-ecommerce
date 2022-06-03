@@ -3,6 +3,7 @@ package org.serratec.backend.projetofinalecommerce.service;
 
 import org.serratec.backend.projetofinalecommerce.dto.ClienteDTO;
 import org.serratec.backend.projetofinalecommerce.entity.Cliente;
+import org.serratec.backend.projetofinalecommerce.exceptions.ClienteException;
 import org.serratec.backend.projetofinalecommerce.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,15 +57,16 @@ public class ClienteService {
         }
     }
 
-    public ClienteDTO buscarPorId(Integer idCliente){
+    public ClienteDTO buscarPorId(Integer idCliente) throws ClienteException{
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
         Cliente clienteNoBanco = new Cliente();
         ClienteDTO clienteDTO = new ClienteDTO();
-        //if(cliente.isPresent()) {
+        if(cliente.isPresent()) {
             clienteNoBanco = cliente.get();
             transformarEntityEmDto(clienteNoBanco, clienteDTO);
             return clienteDTO;
-        //}
+        }
+        throw new ClienteException("O cliente não foi encontrado.");
     }
 
 
@@ -80,10 +82,10 @@ public class ClienteService {
         return listClienteDTO;
     }
 
-    public String atualizar(Integer idCliente, ClienteDTO clienteDTO) {
+    public String atualizar(Integer idCliente, ClienteDTO clienteDTO) throws ClienteException {
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
         Cliente clienteNoBanco = new Cliente();
-        //if(cliente.isPresent()) {
+        if(cliente.isPresent()) {
 
         clienteNoBanco = cliente.get();
         if(clienteDTO.getCpfCliente() != null){
@@ -114,15 +116,17 @@ public class ClienteService {
         clienteRepository.save(clienteNoBanco);
         return "O cliente com id " + clienteNoBanco.getIdCliente() + " foi atualizado!";
 
-        // }
+        }
+        throw new ClienteException("O cliente não foi atualizado.");
     }
 
-    public String deletar(Integer idCliente){
+    public String deletar(Integer idCliente) throws ClienteException {
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
-        //if(cliente.isPresent()){
+        if(cliente.isPresent()){
             clienteRepository.deleteById(idCliente);
             return "O cliente id: " + cliente.get() + " foi deletado com sucesso!";
-        //}
+        }
+        throw new ClienteException("O cliente não foi deletado.");
     }
 
 

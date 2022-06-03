@@ -44,9 +44,9 @@ public class CategoriaService {
 		Optional<Categoria> categoriaOptional = categoriaRepository.findById(idCategoria);
 
 		CategoriaDTO categoriaDto = new CategoriaDTO();
+		Categoria categoriaNoBanco = new Categoria();
 
 		if (categoriaOptional.isPresent()) {
-			Categoria categoriaNoBanco = new Categoria();
 			categoriaNoBanco = categoriaOptional.get();
 			categoriaDto = transformarEntityEmDto(categoriaNoBanco, categoriaDto);
 			return categoriaDto;

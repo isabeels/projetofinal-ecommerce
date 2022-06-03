@@ -1,6 +1,7 @@
 package org.serratec.backend.projetofinalecommerce.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "pedido")
 public class Pedido {
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,14 +34,19 @@ public class Pedido {
 	@NotBlank
 	@Column(name = "pedido_nu_valor")
 	private Double valorTotalPedido;
-	
-	@OneToMany
-	@JoinColumn(name="idCliente", referencedColumnName= "cliente_cd_id")
+
+	@OneToOne
+	@JoinColumn(name = "idCliente", referencedColumnName = "cliente_cd_id")
+	@JsonIgnore
 	private Cliente cliente;
+
+	@JoinColumn(name = "idProduto", referencedColumnName = "produto_cd_id")
+	@JsonIgnore
+	private List<Produto> listaProduto;
 
 	public Pedido() {
 	}
-	
+
 	public Pedido(Integer idPedido, @NotBlank LocalDateTime dataPedido, @NotBlank Double valorTotalPedido) {
 		super();
 		this.idPedido = idPedido;
@@ -76,5 +86,12 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
+	public List<Produto> getListaProduto() {
+		return listaProduto;
+	}
+
+	public void setListaProduto(List<Produto> listaProduto) {
+		this.listaProduto = listaProduto;
+	}
 
 }

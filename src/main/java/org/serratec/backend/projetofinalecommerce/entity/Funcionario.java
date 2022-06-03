@@ -1,14 +1,16 @@
 package org.serratec.backend.projetofinalecommerce.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
 
 @Entity
 @Table(name = "funcionario")
@@ -27,6 +29,9 @@ public class Funcionario {
 	@Column(name = "funcionario_nu_cpf")
 	@Size(min = 11, max = 11)
 	private Integer cpfFuncionario;
+
+	@OneToMany(mappedBy = "funcionario")
+	private List<Produto> listaProdutos;
 
 	public Funcionario() {
 

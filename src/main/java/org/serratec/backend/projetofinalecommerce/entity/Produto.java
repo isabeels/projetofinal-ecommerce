@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -41,6 +45,19 @@ public class Produto implements Serializable {
 	@NotBlank
 	@Column(name = "produto_nu_estoque")
 	private Integer qtdEstoque;
+
+	/* verificar entidade relacionamento desta tabela com pedido */
+
+	@ManyToOne
+	private Pedido pedido;
+
+	@OneToOne
+	@JoinColumn(name = "idCategoria", referencedColumnName = "categoria_cd_id")
+	private Categoria categoria;
+
+	@ManyToOne
+	@JoinColumn(name = "idFuncionario", referencedColumnName = "funcionario_cd_id")
+	private Funcionario funcionario;
 
 	public Produto() {
 	}
@@ -104,5 +121,12 @@ public class Produto implements Serializable {
 		this.qtdEstoque = qtdEstoque;
 	}
 
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 
 }

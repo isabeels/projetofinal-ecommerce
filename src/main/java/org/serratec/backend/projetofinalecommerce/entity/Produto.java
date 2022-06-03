@@ -2,6 +2,7 @@ package org.serratec.backend.projetofinalecommerce.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,9 +47,9 @@ public class Produto implements Serializable {
 	@Column(name = "produto_nu_estoque")
 	private Integer qtdEstoque;
 
-	/* verificar entidade relacionamento desta tabela com pedido */
 
-	@ManyToOne
+
+	@OneToOne (mappedBy = "produto")
 	private Pedido pedido;
 
 	@OneToOne

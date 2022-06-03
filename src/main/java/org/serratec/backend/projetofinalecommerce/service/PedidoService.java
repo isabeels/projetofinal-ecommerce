@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.serratec.backend.projetofinalecommerce.dto.PedidoDTO;
+import org.serratec.backend.projetofinalecommerce.dto.ProdutoPedidoDTO;
 import org.serratec.backend.projetofinalecommerce.entity.Pedido;
-import org.serratec.backend.projetofinalecommerce.exceptions.EmailException;
+import org.serratec.backend.projetofinalecommerce.entity.Produto;
 import org.serratec.backend.projetofinalecommerce.exceptions.PedidoException;
 import org.serratec.backend.projetofinalecommerce.repository.ClienteRepository;
 import org.serratec.backend.projetofinalecommerce.repository.PedidoRepository;
@@ -27,14 +28,14 @@ public class PedidoService {
 
 	@Autowired
 	ClienteRepository clienteRepository;
-	
+
 	@Autowired
 	ProdutoRepository produtoRepository;
 
 	public PedidoDTO transformarEntityEmDTO(Pedido pedido, PedidoDTO pedidoDTO) {
-		pedidoDTO.setIdPedido(pedido.getIdPedido());
-		pedidoDTO.setDataPedido(pedido.getDataPedido());
-		pedidoDTO.setValorTotalPedido(pedido.getValorTotalPedido());
+		pedido.setOperacao(pedidoDTO.getOperacao());
+		pedido.setPedidoNotaFiscal(pedidoDTO.getPedidoNotaFiscal());
+		pedido.setDataPedido(pedidoDTO.getDataPedido());
 
 		return pedidoDTO;
 	}
@@ -47,24 +48,33 @@ public class PedidoService {
 		if (pedidoDTO.getIdCliente() != null) {
 			pedido.setCliente(clienteRepository.findById(pedidoDTO.getIdCliente()).get());
 		}
-		
-//		if (pedidoDTO.getIdProduto() != null) {
-//			pedido.setListaProduto(produtoRepository.findById(pedidoDTO.getIdProduto()).get());
-//		}
-		
+
+
 		return pedido;
 	}
 
-	public String salvar(PedidoDTO pedidoDTO) throws EmailException {
-		Pedido pedido = new Pedido();
-		transformarDtoEmEntity(pedido, pedidoDTO);
-		try {
+	public void salvar(PedidoDTO pedidoDTO) {
+
+		for (ProdutoPedidoDTO produtoPedido : pedidoDTO.getListaProdutoPedido()) {
+			Pedido pedido = new Pedido();
+			Produto produto = produtoRepository.findById(produtoPedido.getIdProduto()).get();
+
+			if (pedidoDTO.getOperacao().equals("venda")) {
+				produto.setQtdEstoque(produto.getQtdEstoque() - produtoPedido.getQuantidadeProduto());
+			}
+
+			if (pedidoDTO.getOperacao().equals("compra")) {
+				produto.setQtdEstoque(produto.getQtdEstoque() + produtoPedido.getQuantidadeProduto());
+			}
+
+			pedido.setProduto(produto);
+			pedido.setQuantidadeProduto(produtoPedido.getQuantidadeProduto());
+			pedido.setValorUnitarioProduto(produtoPedido.getValorUnitario());
+			pedido.setOperacao(pedidoDTO.getOperacao());
+			pedido.setPedidoNotaFiscal(pedidoDTO.getPedidoNotaFiscal());
+			pedido.setDataPedido(pedidoDTO.getDataPedido());
 			pedidoRepository.save(pedido);
-			emailService.emailPedido(pedido);
-		} catch (Exception e) {
-			System.out.println("Ocorreu um erro: " + e);
 		}
-		return "Foi criado o pedido com id: " + pedido.getIdPedido();
 	}
 
 	public void salvarListaPedido(List<PedidoDTO> listaPedidoDTO) {
@@ -115,8 +125,8 @@ public class PedidoService {
 	public String deletarPorId(Integer idPedido) throws PedidoException {
 		Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
 		if (pedido.isPresent()) {
-		pedidoRepository.deleteById(idPedido);
-		return "O pedido id: " + pedido.get() + " foi deletado com sucesso!";
+			pedidoRepository.deleteById(idPedido);
+			return "O pedido id: " + pedido.get() + " foi deletado com sucesso!";
 		}
 		throw new PedidoException("O id informado não foi encontrado!");
 	}

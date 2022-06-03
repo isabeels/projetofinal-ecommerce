@@ -33,25 +33,46 @@ public class Pedido {
 
 	@NotBlank
 	@Column(name = "pedido_nu_valor")
-	private Double valorTotalPedido;
+	private Double valorUnitarioProduto;
+	
+	@NotBlank
+	@Column(name = "pedido_nu_quantidade")
+	private Integer quantidadeProduto;
+	
+	@NotBlank
+	@Column(name = "pedido_tx_operacao")
+	private String operacao;
+	
+	@NotBlank
+	@Column(name = "pedido_nu_nota_fiscal")
+	private Integer pedidoNotaFiscal;
 
+	
 	@OneToOne
 	@JoinColumn(name = "idCliente", referencedColumnName = "cliente_cd_id")
 	@JsonIgnore
 	private Cliente cliente;
 
+	@OneToOne
 	@JoinColumn(name = "idProduto", referencedColumnName = "produto_cd_id")
 	@JsonIgnore
-	private List<Produto> listaProduto;
+	private Produto produto;
 
 	public Pedido() {
 	}
 
-	public Pedido(Integer idPedido, @NotBlank LocalDateTime dataPedido, @NotBlank Double valorTotalPedido) {
+	public Pedido(Integer idPedido, @NotBlank LocalDateTime dataPedido, @NotBlank Double valorUnitarioProduto,
+			@NotBlank Integer quantidadeProduto, @NotBlank String operacao, @NotBlank Integer pedidoNotaFiscal,
+			Cliente cliente, Produto produto) {
 		super();
 		this.idPedido = idPedido;
 		this.dataPedido = dataPedido;
-		this.valorTotalPedido = valorTotalPedido;
+		this.valorUnitarioProduto = valorUnitarioProduto;
+		this.quantidadeProduto = quantidadeProduto;
+		this.operacao = operacao;
+		this.pedidoNotaFiscal = pedidoNotaFiscal;
+		this.cliente = cliente;
+		this.produto = produto;
 	}
 
 	public Integer getIdPedido() {
@@ -70,12 +91,36 @@ public class Pedido {
 		this.dataPedido = dataPedido;
 	}
 
-	public Double getValorTotalPedido() {
-		return valorTotalPedido;
+	public Double getValorUnitarioProduto() {
+		return valorUnitarioProduto;
 	}
 
-	public void setValorTotalPedido(Double valorTotalPedido) {
-		this.valorTotalPedido = valorTotalPedido;
+	public void setValorUnitarioProduto(Double valorUnitarioProduto) {
+		this.valorUnitarioProduto = valorUnitarioProduto;
+	}
+
+	public Integer getQuantidadeProduto() {
+		return quantidadeProduto;
+	}
+
+	public void setQuantidadeProduto(Integer quantidadeProduto) {
+		this.quantidadeProduto = quantidadeProduto;
+	}
+
+	public String getOperacao() {
+		return operacao;
+	}
+
+	public void setOperacao(String operacao) {
+		this.operacao = operacao;
+	}
+
+	public Integer getPedidoNotaFiscal() {
+		return pedidoNotaFiscal;
+	}
+
+	public void setPedidoNotaFiscal(Integer pedidoNotaFiscal) {
+		this.pedidoNotaFiscal = pedidoNotaFiscal;
 	}
 
 	public Cliente getCliente() {
@@ -86,12 +131,12 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public List<Produto> getListaProduto() {
-		return listaProduto;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setListaProduto(List<Produto> listaProduto) {
-		this.listaProduto = listaProduto;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 }

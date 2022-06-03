@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.serratec.backend.projetofinalecommerce.dto.CategoriaDTO;
 import org.serratec.backend.projetofinalecommerce.entity.Categoria;
+import org.serratec.backend.projetofinalecommerce.exceptions.CategoriaException;
 import org.serratec.backend.projetofinalecommerce.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,8 +40,19 @@ public class CategoriaService {
 		}
 	}
 
-	public Optional<Categoria> buscarPorId(Integer idCategoria) {
-		return categoriaRepository.findById(idCategoria);
+	public CategoriaDTO buscarPorId(Integer idCategoria) throws CategoriaException {
+		Optional<Categoria> categoriaOptional = categoriaRepository.findById(idCategoria);
+
+		CategoriaDTO categoriaDto = new CategoriaDTO();
+
+		if (categoriaOptional.isPresent()) {
+			Categoria categoriaNoBanco = new Categoria();
+			categoriaNoBanco = categoriaOptional.get();
+			categoriaDto = transformarEntityEmDto(categoriaNoBanco, categoriaDto);
+			return categoriaDto;
+		}
+
+		throw new CategoriaException("Categoria não encontrada.");
 	}
 
 	public List<Categoria> buscarTodos() {
@@ -49,19 +61,20 @@ public class CategoriaService {
 
 	public void atualizarCategoria(Integer idCategoria, CategoriaDTO categoriaDto) {
 		Optional<Categoria> categoriaOptional = categoriaRepository.findById(idCategoria);
+		Categoria categoriaNoBanco = new Categoria();
 
 		if (categoriaOptional.isPresent()) {
-			Categoria categoria = new Categoria();
+			categoriaNoBanco = categoriaOptional.get();
 
 			if (categoriaDto.getDescricaoCategoria() != null) {
-				categoria.setDescricaoCategoria(categoriaDto.getDescricaoCategoria());
+				categoriaNoBanco.setDescricaoCategoria(categoriaDto.getDescricaoCategoria());
 			}
 
 			if (categoriaDto.getNomeCategoria() != null) {
-				categoria.setNomeCategoria(categoriaDto.getNomeCategoria());
+				categoriaNoBanco.setNomeCategoria(categoriaDto.getNomeCategoria());
 			}
 
-			categoriaRepository.save(categoria);
+			categoriaRepository.save(categoriaNoBanco);
 		}
 	}
 

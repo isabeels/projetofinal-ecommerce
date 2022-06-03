@@ -10,6 +10,7 @@ import org.serratec.backend.projetofinalecommerce.exceptions.EmailException;
 import org.serratec.backend.projetofinalecommerce.exceptions.PedidoException;
 import org.serratec.backend.projetofinalecommerce.repository.ClienteRepository;
 import org.serratec.backend.projetofinalecommerce.repository.PedidoRepository;
+import org.serratec.backend.projetofinalecommerce.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,9 @@ public class PedidoService {
 
 	@Autowired
 	ClienteRepository clienteRepository;
+	
+	@Autowired
+	ProdutoRepository produtoRepository;
 
 	public PedidoDTO transformarEntityEmDTO(Pedido pedido, PedidoDTO pedidoDTO) {
 		pedidoDTO.setIdPedido(pedido.getIdPedido());
@@ -43,6 +47,11 @@ public class PedidoService {
 		if (pedidoDTO.getIdCliente() != null) {
 			pedido.setCliente(clienteRepository.findById(pedidoDTO.getIdCliente()).get());
 		}
+		
+//		if (pedidoDTO.getIdProduto() != null) {
+//			pedido.setListaProduto(produtoRepository.findById(pedidoDTO.getIdProduto()).get());
+//		}
+		
 		return pedido;
 	}
 

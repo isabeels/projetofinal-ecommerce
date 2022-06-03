@@ -8,7 +8,7 @@ public class PedidoDTO {
 	private LocalDateTime dataPedido;
 	private Double valorTotalPedido;
 	private Integer idCliente;
-	private Integer idPProduto;
+	private Integer idProduto;
 
 	public Integer getIdPedido() {
 		return idPedido;
@@ -42,12 +42,12 @@ public class PedidoDTO {
 		this.idCliente = idCliente;
 	}
 
-	public Integer getIdPProduto() {
-		return idPProduto;
+	public Integer getIdProduto() {
+		return idProduto;
 	}
 
-	public void setIdPProduto(Integer idPProduto) {
-		this.idPProduto = idPProduto;
+	public void setIdProduto(Integer idProduto) {
+		this.idProduto = idProduto;
 	}
 	
 

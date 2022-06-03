@@ -10,6 +10,8 @@ public class ProdutoDTO {
 	private Double valorUnitario;
 	private LocalDate dataFabricacao;
 	private Integer qtdEstoque;
+	private Integer idFuncionario;
+	private Integer idCategoria;
 	
 	
 	public Integer getIdProduto() {
@@ -48,6 +50,18 @@ public class ProdutoDTO {
 	public void setQtdEstoque(Integer qtdEstoque) {
 		this.qtdEstoque = qtdEstoque;
 	}
-	
+	public Integer getIdFuncionario() {
+		return idFuncionario;
+	}
+	public void setIdFuncionario(Integer idFuncionario) {
+		this.idFuncionario = idFuncionario;
+	}
+	public Integer getIdCategoria() {
+		return idCategoria;
+	}
+	public void setIdCategoria(Integer idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+
 	
 }

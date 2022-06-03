@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.serratec.backend.projetofinalecommerce.dto.ProdutoDTO;
 import org.serratec.backend.projetofinalecommerce.entity.Produto;
 import org.serratec.backend.projetofinalecommerce.exceptions.ProdutoException;
+import org.serratec.backend.projetofinalecommerce.repository.CategoriaRepository;
+import org.serratec.backend.projetofinalecommerce.repository.FuncionarioRepository;
 import org.serratec.backend.projetofinalecommerce.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,11 @@ public class ProdutoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 	
+	@Autowired
+	FuncionarioRepository funcionarioRepository;
+	
+	@Autowired
+	CategoriaRepository categoriaRepository;
 	
 	public Produto transformarDtoEmEntity (Produto produto, ProdutoDTO produtoDTO) {
 		
@@ -27,6 +34,15 @@ public class ProdutoService {
 		produto.setDataFabricacao(produtoDTO.getDataFabricacao());
 		produto.setValorUnitario(produtoDTO.getValorUnitario());
 		produto.setDescricaoProduto(produtoDTO.getDescricaoProduto());
+		
+		
+		if (produtoDTO.getIdFuncionario() != null) {
+			produto.setFuncionario(funcionarioRepository.findById(produtoDTO.getIdFuncionario()).get());
+		}
+		
+		if(produtoDTO.getIdCategoria() != null) {
+			produto.setCategoria(categoriaRepository.findById(produtoDTO.getIdCategoria()).get());
+		}
 		
 		return produto;
 	}

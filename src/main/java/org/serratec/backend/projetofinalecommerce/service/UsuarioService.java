@@ -75,5 +75,5 @@ public class UsuarioService {
 				.findFirst()
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
-
+	
 }

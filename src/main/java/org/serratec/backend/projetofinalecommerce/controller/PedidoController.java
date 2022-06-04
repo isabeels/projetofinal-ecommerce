@@ -38,7 +38,7 @@ public class PedidoController {
 
 	@PostMapping("/salvar")
 	public ResponseEntity<Void> salvarPedido(@RequestBody PedidoDTO pedidoDTO)
-			throws PedidoException, EmailException, MessagingException {
+			throws Exception {
 		pedidoService.salvar(pedidoDTO);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}

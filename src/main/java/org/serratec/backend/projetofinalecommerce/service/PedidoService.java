@@ -59,7 +59,7 @@ public class PedidoService {
 		return pedido;
 	}
 
-	public String salvar(PedidoDTO pedidoDTO) throws EmailException, MessagingException {
+	public String salvar(PedidoDTO pedidoDTO) throws Exception {
 
 		String emailCliente = "";
 		String nomeCliente = "";
@@ -71,7 +71,11 @@ public class PedidoService {
 			produtoPedido.setNomeProduto(produto.getNomeProduto());
 			
 			if (pedidoDTO.getOperacao().equals("venda")) {
-				produto.setQtdEstoque(produto.getQtdEstoque() - produtoPedido.getQuantidadeProduto());
+				if(produto.getQtdEstoque() >= produtoPedido.getQuantidadeProduto()) {
+					produto.setQtdEstoque(produto.getQtdEstoque() - produtoPedido.getQuantidadeProduto());
+				}else {
+					throw new Exception("Não foi possível efetuar este pedido. Quantidade em estoque insuficiente");
+				}
 			}
 			if (pedidoDTO.getOperacao().equals("compra")) {
 				produto.setQtdEstoque(produto.getQtdEstoque() + produtoPedido.getQuantidadeProduto());

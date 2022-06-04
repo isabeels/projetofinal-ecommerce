@@ -43,7 +43,7 @@ public class PedidoService {
 	public Pedido transformarDtoEmEntity(Pedido pedido, PedidoDTO pedidoDTO) {
 		pedido.setIdPedido(pedidoDTO.getIdPedido());
 		pedido.setDataPedido(pedidoDTO.getDataPedido());
-		pedido.setValorTotalPedido(pedidoDTO.getValorTotalPedido());
+		//pedido.setValorTotalPedido(pedidoDTO.getValorTotalPedido());
 
 		if (pedidoDTO.getIdCliente() != null) {
 			pedido.setCliente(clienteRepository.findById(pedidoDTO.getIdCliente()).get());
@@ -53,7 +53,7 @@ public class PedidoService {
 		return pedido;
 	}
 
-	public void salvar(PedidoDTO pedidoDTO) {
+	public String salvar(PedidoDTO pedidoDTO) {
 
 		for (ProdutoPedidoDTO produtoPedido : pedidoDTO.getListaProdutoPedido()) {
 			Pedido pedido = new Pedido();
@@ -75,6 +75,7 @@ public class PedidoService {
 			pedido.setDataPedido(pedidoDTO.getDataPedido());
 			pedidoRepository.save(pedido);
 		}
+		return "O pedido foi emitido e salvo";
 	}
 
 	public void salvarListaPedido(List<PedidoDTO> listaPedidoDTO) {
@@ -111,10 +112,10 @@ public class PedidoService {
 			if (pedidoDTO.getDataPedido() != null) {
 				pedidoBanco.setDataPedido(pedidoDTO.getDataPedido());
 			}
-			if (pedidoDTO.getValorTotalPedido() != null) {
-				pedidoBanco.setValorTotalPedido(pedidoDTO.getValorTotalPedido());
-
-			}
+//			if (pedidoDTO.getValorTotalPedido() != null) {
+//				pedidoBanco.setValorTotalPedido(pedidoDTO.getValorTotalPedido());
+//
+//			}
 
 			pedidoRepository.save(pedidoBanco);
 			return "O cartao com id " + pedidoBanco.getIdPedido() + " foi atualizado";

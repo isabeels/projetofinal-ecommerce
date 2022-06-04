@@ -69,11 +69,11 @@ public class PedidoService {
 
 			Produto produto = produtoRepository.findById(produtoPedido.getIdProduto()).get();
 			produtoPedido.setNomeProduto(produto.getNomeProduto());
-			
+
 			if (pedidoDTO.getOperacao().equals("venda")) {
-				if(produto.getQtdEstoque() >= produtoPedido.getQuantidadeProduto()) {
+				if (produto.getQtdEstoque() >= produtoPedido.getQuantidadeProduto()) {
 					produto.setQtdEstoque(produto.getQtdEstoque() - produtoPedido.getQuantidadeProduto());
-				}else {
+				} else {
 					throw new Exception("Não foi possível efetuar este pedido. Quantidade em estoque insuficiente");
 				}
 			}

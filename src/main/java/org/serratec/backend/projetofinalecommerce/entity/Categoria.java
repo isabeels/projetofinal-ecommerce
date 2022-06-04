@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "categoria")
@@ -22,14 +22,14 @@ public class Categoria implements Serializable {
 	@Column(name = "categoria_cd_id")
 	private Integer idCategoria;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "categoria_tx_nome")
 	private String nomeCategoria;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "categoria_tx_descricao")
 	private String descricaoCategoria;
-	
+
 	@OneToMany(mappedBy = "categoria")
 	private List<Produto> listaProduto;
 

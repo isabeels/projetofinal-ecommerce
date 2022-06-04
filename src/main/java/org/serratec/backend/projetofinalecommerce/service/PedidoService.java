@@ -32,28 +32,27 @@ public class PedidoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 
-	public PedidoDTO transformarEntityEmDTO(Pedido pedido, PedidoDTO pedidoDTO) {
-		pedido.setOperacao(pedidoDTO.getOperacao());
-		pedido.setPedidoNotaFiscal(pedidoDTO.getPedidoNotaFiscal());
-		pedido.setDataPedido(pedidoDTO.getDataPedido());
+	public PedidoDTO transformarEntityEmDTO(Pedido pedido ,PedidoDTO pedidoDTO ) {
+		pedidoDTO.setOperacao(pedido.getOperacao());
+		pedidoDTO.setPedidoNotaFiscal(pedido.getPedidoNotaFiscal());
+		pedidoDTO.setDataPedido(pedido.getDataPedido());
+		pedido.getCliente().getNomeCliente();
 
 		return pedidoDTO;
 	}
-
-	public Pedido transformarDtoEmEntity(Pedido pedido, PedidoDTO pedidoDTO) {
-		pedido.setIdPedido(pedidoDTO.getIdPedido());
+	
+	private Pedido transformarDtoEmEntity(PedidoDTO pedidoDTO, ProdutoPedidoDTO produtoPedido, Pedido pedido, Produto produto) {
+		pedido.setProduto(produto);
+		pedido.setQuantidadeProduto(produtoPedido.getQuantidadeProduto());
+		pedido.setValorUnitarioProduto(produtoPedido.getValorUnitario());
+		pedido.setOperacao(pedidoDTO.getOperacao());
+		pedido.setPedidoNotaFiscal(pedidoDTO.getPedidoNotaFiscal());
 		pedido.setDataPedido(pedidoDTO.getDataPedido());
-		pedido.setValorTotalPedido(pedidoDTO.getValorTotalPedido());
-
-		if (pedidoDTO.getIdCliente() != null) {
-			pedido.setCliente(clienteRepository.findById(pedidoDTO.getIdCliente()).get());
-		}
-
-
+		
 		return pedido;
 	}
 
-	public void salvar(PedidoDTO pedidoDTO) {
+	public String salvar(PedidoDTO pedidoDTO) {
 
 		for (ProdutoPedidoDTO produtoPedido : pedidoDTO.getListaProdutoPedido()) {
 			Pedido pedido = new Pedido();
@@ -66,25 +65,12 @@ public class PedidoService {
 			if (pedidoDTO.getOperacao().equals("compra")) {
 				produto.setQtdEstoque(produto.getQtdEstoque() + produtoPedido.getQuantidadeProduto());
 			}
-
-			pedido.setProduto(produto);
-			pedido.setQuantidadeProduto(produtoPedido.getQuantidadeProduto());
-			pedido.setValorUnitarioProduto(produtoPedido.getValorUnitario());
-			pedido.setOperacao(pedidoDTO.getOperacao());
-			pedido.setPedidoNotaFiscal(pedidoDTO.getPedidoNotaFiscal());
-			pedido.setDataPedido(pedidoDTO.getDataPedido());
+			transformarDtoEmEntity(pedidoDTO, produtoPedido, pedido, produto);
 			pedidoRepository.save(pedido);
 		}
+		return "O pedido foi emitido e salvo";
 	}
 
-	public void salvarListaPedido(List<PedidoDTO> listaPedidoDTO) {
-
-		for (PedidoDTO pedidoDTO : listaPedidoDTO) {
-			Pedido pedido = new Pedido();
-			transformarDtoEmEntity(pedido, pedidoDTO);
-			pedidoRepository.save(pedido);
-		}
-	}
 
 	public PedidoDTO buscarPorId(Integer idPedido) {
 		return pedidoRepository.findById(idPedido).map(pedido -> transformarEntityEmDTO(pedido, new PedidoDTO()))
@@ -103,24 +89,24 @@ public class PedidoService {
 		return listaPedidoDTO;
 	}
 
-	public String atualizar(Integer idPedido, PedidoDTO pedidoDTO) throws PedidoException {
-		Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
-		Pedido pedidoBanco = new Pedido();
-		if (pedido.isPresent()) {
-			pedidoBanco = pedido.get();
-			if (pedidoDTO.getDataPedido() != null) {
-				pedidoBanco.setDataPedido(pedidoDTO.getDataPedido());
-			}
-			if (pedidoDTO.getValorTotalPedido() != null) {
-				pedidoBanco.setValorTotalPedido(pedidoDTO.getValorTotalPedido());
-
-			}
-
-			pedidoRepository.save(pedidoBanco);
-			return "O cartao com id " + pedidoBanco.getIdPedido() + " foi atualizado";
-		}
-		throw new PedidoException("Não foi possível atualizar o pedido");
-	}
+//	public String atualizar(Integer idPedido, PedidoDTO pedidoDTO) throws PedidoException {
+//		Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
+//		Pedido pedidoBanco = new Pedido();
+//		if (pedido.isPresent()) {
+//			pedidoBanco = pedido.get();
+//			if (pedidoDTO.getDataPedido() != null) {
+//				pedidoBanco.setDataPedido(pedidoDTO.getDataPedido());
+//			}
+//			if (pedidoDTO.getValorTotalPedido() != null) {
+//				pedidoBanco.setValorTotalPedido(pedidoDTO.getValorTotalPedido());
+//
+//			}
+//
+//			pedidoRepository.save(pedidoBanco);
+//			return "O cartao com id " + pedidoBanco.getIdPedido() + " foi atualizado";
+//		}
+//		throw new PedidoException("Não foi possível atualizar o pedido");
+//	}
 
 	public String deletarPorId(Integer idPedido) throws PedidoException {
 		Optional<Pedido> pedido = pedidoRepository.findById(idPedido);

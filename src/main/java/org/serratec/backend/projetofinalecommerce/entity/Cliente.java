@@ -1,7 +1,7 @@
 package org.serratec.backend.projetofinalecommerce.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -25,59 +25,51 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cliente_cd_id")
 	private Integer idCliente;
-	
-    @NotBlank
+
+	@NotNull
 	@Column(name = "cliente_tx_nome")
 	private String nomeCliente;
-    
-    @NotBlank
+
+	@NotNull
 	@Column(name = "cliente_tx_login")
 	private String loginCliente;
-    
-    @NotBlank
+
+	@NotNull
 	@Email
 	@Column(name = "cliente_tx_email")
 	private String emailCliente;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "cliente_tx_senha")
 	private String senhaCliente;
 
-    @NotBlank
-    @Size(min = 11, max = 11)
+	@NotNull
+	@Size(min = 11, max = 11)
 	@Column(name = "cliente_nu_cpf")
-	private Integer cpfCliente;
-    
-    @NotBlank
+	private String cpfCliente;
+
+	@NotNull
 	@Column(name = "cliente_dt_nascimento")
 	private Date dataNasciCliente;
-    
-    @NotBlank
+
+	@NotNull
 	@Column(name = "cliente_tx_endereco")
 	private String enderecoCliente;
 
-    @NotBlank
+	@NotNull
 	@Column(name = "cliente_tx_telefone")
-	private Integer telefoneCliente;
-   
-    @OneToMany(mappedBy = "cliente")
-    private List<Pedido> listaPedido;
+	private String telefoneCliente;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> listaPedido;
 
 	// Construtores
-    
+
 	public Cliente() {
 	}
 
-	public Cliente(
-			Integer idCliente,
-			String nomeCliente,
-			String loginCliente,
-			String emailCliente,
-			Integer cpfCliente,
-			Date dataNasciCliente,
-			String enderecoCliente,
-			Integer telefoneCliente
-	) {
+	public Cliente(Integer idCliente, String nomeCliente, String loginCliente, String emailCliente, String cpfCliente,
+			Date dataNasciCliente, String enderecoCliente, String telefoneCliente) {
 		this.idCliente = idCliente;
 		this.nomeCliente = nomeCliente;
 		this.loginCliente = loginCliente;
@@ -87,7 +79,6 @@ public class Cliente implements Serializable {
 		this.enderecoCliente = enderecoCliente;
 		this.telefoneCliente = telefoneCliente;
 	}
-
 
 	public String getSenhaCliente() {
 		return senhaCliente;
@@ -129,11 +120,11 @@ public class Cliente implements Serializable {
 		this.emailCliente = emailCliente;
 	}
 
-	public Integer getCpfCliente() {
+	public String getCpfCliente() {
 		return cpfCliente;
 	}
 
-	public void setCpfCliente(Integer cpfCliente) {
+	public void setCpfCliente(String cpfCliente) {
 		this.cpfCliente = cpfCliente;
 	}
 
@@ -153,14 +144,14 @@ public class Cliente implements Serializable {
 		this.enderecoCliente = enderecoCliente;
 	}
 
-	public Integer getTelefoneCliente() {
+	public String getTelefoneCliente() {
 		return telefoneCliente;
 	}
 
-	public void setTelefoneCliente(Integer telefoneCliente) {
+	public void setTelefoneCliente(String telefoneCliente) {
 		this.telefoneCliente = telefoneCliente;
 	}
-	
+
 	public List<Pedido> getListaPedido() {
 		return listaPedido;
 	}

@@ -1,7 +1,6 @@
 package org.serratec.backend.projetofinalecommerce.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,27 +25,26 @@ public class Pedido {
 	@Column(name = "pedido_cd_id")
 	private Integer idPedido;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "pedido_dt_compra")
 	private LocalDateTime dataPedido;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "pedido_nu_valor")
 	private Double valorUnitarioProduto;
-	
-	@NotBlank
+
+	@NotNull
 	@Column(name = "pedido_nu_quantidade")
 	private Integer quantidadeProduto;
-	
-	@NotBlank
+
+	@NotNull
 	@Column(name = "pedido_tx_operacao")
 	private String operacao;
-	
-	@NotBlank
+
+	@NotNull
 	@Column(name = "pedido_nu_nota_fiscal")
 	private Integer pedidoNotaFiscal;
 
-	
 	@OneToOne
 	@JoinColumn(name = "idCliente", referencedColumnName = "cliente_cd_id")
 	@JsonIgnore
@@ -61,8 +58,8 @@ public class Pedido {
 	public Pedido() {
 	}
 
-	public Pedido(Integer idPedido, @NotBlank LocalDateTime dataPedido, @NotBlank Double valorUnitarioProduto,
-			@NotBlank Integer quantidadeProduto, @NotBlank String operacao, @NotBlank Integer pedidoNotaFiscal,
+	public Pedido(Integer idPedido, @NotNull LocalDateTime dataPedido, @NotNull Double valorUnitarioProduto,
+			@NotNull Integer quantidadeProduto, @NotNull String operacao, @NotNull Integer pedidoNotaFiscal,
 			Cliente cliente, Produto produto) {
 		super();
 		this.idPedido = idPedido;

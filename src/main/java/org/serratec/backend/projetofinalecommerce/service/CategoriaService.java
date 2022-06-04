@@ -8,7 +8,9 @@ import org.serratec.backend.projetofinalecommerce.entity.Categoria;
 import org.serratec.backend.projetofinalecommerce.exceptions.CategoriaException;
 import org.serratec.backend.projetofinalecommerce.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CategoriaService {
 
 	@Autowired

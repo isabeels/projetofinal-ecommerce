@@ -2,7 +2,6 @@ package org.serratec.backend.projetofinalecommerce.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "produto")
@@ -27,29 +25,27 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProduto;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "produto_tx_nome")
 	private String nomeProduto;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "produto_tx_descricao")
 	private String descricaoProduto;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "produto_nu_valor")
 	private Double valorUnitario;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "produto_dt_fabricacao")
 	private LocalDate dataFabricacao;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "produto_nu_estoque")
 	private Integer qtdEstoque;
 
-
-
-	@OneToOne (mappedBy = "produto")
+	@OneToOne(mappedBy = "produto")
 	private Pedido pedido;
 
 	@OneToOne
@@ -63,8 +59,8 @@ public class Produto implements Serializable {
 	public Produto() {
 	}
 
-	public Produto(Integer idProduto, @NotBlank String nomeProduto, @NotBlank String descricaoProduto,
-			@NotBlank Double valorUnitario, @NotBlank LocalDate dataFabricacao, @NotBlank Integer qtdEstoque) {
+	public Produto(Integer idProduto, @NotNull String nomeProduto, @NotNull String descricaoProduto,
+			@NotNull Double valorUnitario, @NotNull LocalDate dataFabricacao, @NotNull Integer qtdEstoque) {
 		super();
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
@@ -145,7 +141,5 @@ public class Produto implements Serializable {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	
-	
 
 }

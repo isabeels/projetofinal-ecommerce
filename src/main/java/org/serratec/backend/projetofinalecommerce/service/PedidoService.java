@@ -52,7 +52,7 @@ public class PedidoService {
 		return pedido;
 	}
 
-	public void salvar(PedidoDTO pedidoDTO) {
+	public String salvar(PedidoDTO pedidoDTO) {
 
 		for (ProdutoPedidoDTO produtoPedido : pedidoDTO.getListaProdutoPedido()) {
 			Pedido pedido = new Pedido();
@@ -68,6 +68,7 @@ public class PedidoService {
 			transformarDtoEmEntity(pedidoDTO, produtoPedido, pedido, produto);
 			pedidoRepository.save(pedido);
 		}
+		return "O pedido foi emitido e salvo";
 	}
 
 

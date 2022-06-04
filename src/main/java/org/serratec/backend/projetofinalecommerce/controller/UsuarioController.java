@@ -50,7 +50,7 @@ public class UsuarioController {
 		return ResponseEntity.ok(new UsuarioAuthenticationResponse(token));
 	}
 
-	@PostMapping
+	@PostMapping("/salvar")
 	public ResponseEntity<Integer> salvarUsuario(@RequestBody @Valid UsuarioDTO usuarioDto) {
 		return ResponseEntity.ok(usuarioService.salvarUsuario(usuarioDto));
 	}

@@ -11,7 +11,6 @@ public class UsuarioDTO implements Serializable {
 	private String password;
 
 	public UsuarioDTO() {
-		super();
 	}
 
 	public UsuarioDTO(Integer idUsuario, String username, String password) {

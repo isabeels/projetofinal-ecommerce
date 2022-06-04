@@ -1,7 +1,6 @@
 package org.serratec.backend.projetofinalecommerce.dto;
 
-import java.sql.Date;
-
+import java.util.Date;
 
 public class ClienteDTO {
 	
@@ -10,10 +9,10 @@ public class ClienteDTO {
 	private String loginCliente;
 	private String senhaCliente;
 	private String emailCliente;
-	private Integer cpfCliente;
+	private String cpfCliente;
 	private Date dataNasciCliente;
 	private String enderecoCliente;
-	private Integer telefoneCliente;
+	private String telefoneCliente;
 
 	public Integer getIdCliente() {
 		return idCliente;
@@ -55,11 +54,11 @@ public class ClienteDTO {
 		this.emailCliente = emailCliente;
 	}
 
-	public Integer getCpfCliente() {
+	public String getCpfCliente() {
 		return cpfCliente;
 	}
 
-	public void setCpfCliente(Integer cpfCliente) {
+	public void setCpfCliente(String cpfCliente) {
 		this.cpfCliente = cpfCliente;
 	}
 
@@ -79,11 +78,11 @@ public class ClienteDTO {
 		this.enderecoCliente = enderecoCliente;
 	}
 
-	public Integer getTelefoneCliente() {
+	public String getTelefoneCliente() {
 		return telefoneCliente;
 	}
 
-	public void setTelefoneCliente(Integer telefoneCliente) {
+	public void setTelefoneCliente(String telefoneCliente) {
 		this.telefoneCliente = telefoneCliente;
 	}
 }

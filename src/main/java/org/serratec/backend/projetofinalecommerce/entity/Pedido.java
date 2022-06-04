@@ -47,7 +47,7 @@ public class Pedido {
 
 	@OneToOne
 	@JoinColumn(name = "idCliente", referencedColumnName = "cliente_cd_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Cliente cliente;
 
 	@OneToOne

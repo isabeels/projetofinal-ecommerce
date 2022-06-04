@@ -41,7 +41,10 @@ public class PedidoService {
 		return pedidoDTO;
 	}
 	
-	private Pedido transformarDtoEmEntity(PedidoDTO pedidoDTO, ProdutoPedidoDTO produtoPedido, Pedido pedido, Produto produto) {
+	
+
+	private Pedido transformarDtoEmEntity(PedidoDTO pedidoDTO, ProdutoPedidoDTO produtoPedido, Pedido pedido,
+			Produto produto) {
 		pedido.setProduto(produto);
 		pedido.setQuantidadeProduto(produtoPedido.getQuantidadeProduto());
 		pedido.setValorUnitarioProduto(produtoPedido.getValorUnitario());
@@ -49,6 +52,10 @@ public class PedidoService {
 		pedido.setPedidoNotaFiscal(pedidoDTO.getPedidoNotaFiscal());
 		pedido.setDataPedido(pedidoDTO.getDataPedido());
 		
+
+		if (null != pedidoDTO.getIdCliente()) {
+			pedido.setCliente(clienteRepository.findById(pedidoDTO.getIdCliente()).get());
+		}
 		return pedido;
 	}
 

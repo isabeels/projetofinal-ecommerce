@@ -32,7 +32,7 @@ public class PedidoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 
-	public PedidoDTO transformarEntityEmDTO(Pedido pedido ,PedidoDTO pedidoDTO ) {
+	public PedidoDTO transformarEntityEmDTO(Pedido pedido, PedidoDTO pedidoDTO) {
 		pedidoDTO.setOperacao(pedido.getOperacao());
 		pedidoDTO.setPedidoNotaFiscal(pedido.getPedidoNotaFiscal());
 		pedidoDTO.setDataPedido(pedido.getDataPedido());
@@ -40,15 +40,19 @@ public class PedidoService {
 
 		return pedidoDTO;
 	}
-	
-	private Pedido transformarDtoEmEntity(PedidoDTO pedidoDTO, ProdutoPedidoDTO produtoPedido, Pedido pedido, Produto produto) {
+
+	private Pedido transformarDtoEmEntity(PedidoDTO pedidoDTO, ProdutoPedidoDTO produtoPedido, Pedido pedido,
+			Produto produto) {
 		pedido.setProduto(produto);
 		pedido.setQuantidadeProduto(produtoPedido.getQuantidadeProduto());
 		pedido.setValorUnitarioProduto(produtoPedido.getValorUnitario());
 		pedido.setOperacao(pedidoDTO.getOperacao());
 		pedido.setPedidoNotaFiscal(pedidoDTO.getPedidoNotaFiscal());
 		pedido.setDataPedido(pedidoDTO.getDataPedido());
-		
+
+		if (null != pedidoDTO.getIdCliente()) {
+			pedido.setCliente(clienteRepository.findById(pedidoDTO.getIdCliente()).get());
+		}
 		return pedido;
 	}
 
@@ -70,7 +74,6 @@ public class PedidoService {
 		}
 		return "O pedido foi emitido e salvo";
 	}
-
 
 	public PedidoDTO buscarPorId(Integer idPedido) {
 		return pedidoRepository.findById(idPedido).map(pedido -> transformarEntityEmDTO(pedido, new PedidoDTO()))

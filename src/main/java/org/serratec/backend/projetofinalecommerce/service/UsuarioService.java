@@ -36,11 +36,11 @@ public class UsuarioService {
 		return usuario;
 	}
 
-	public String salvarUsuario(UsuarioDTO usuarioDto) {
+	public Integer salvarUsuario(UsuarioDTO usuarioDto) {
 		Usuario usuario = new Usuario();
 		transformarDtoEmEntity(usuarioDto, usuario);
 		usuarioRepository.save(usuario);
-		return "Usuário ID: " + usuario.getIdUsuario() + " Nome: " + usuario.getUsername() + " Criado com sucesso.";
+		return usuario.getIdUsuario();
 	}
 
 	public UsuarioDTO buscarPorId(Integer idUsuario) throws UsuarioException {

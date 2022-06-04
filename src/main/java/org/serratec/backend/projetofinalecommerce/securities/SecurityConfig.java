@@ -1,5 +1,6 @@
 package org.serratec.backend.projetofinalecommerce.securities;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,15 +12,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SuppressWarnings("deprecation")
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
+	@Autowired
+	UserServiceImpl userService;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-		.inMemoryAuthentication()
-		.passwordEncoder(passwordEncoder())
-		.withUser("dev6")
-		.password(passwordEncoder().encode("admin"))
-		.roles("ADMIN");
+		.userDetailsService(userService)
+		.passwordEncoder(passwordEncoder());
 	}
 
 	@Override
@@ -41,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 /*
  	nosso próprio sistema de encodificação
- 	
  	
 	@Bean
 	public PasswordEncoder passwordEncoder () {

@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,14 +21,14 @@ public class Funcionario {
 	@Column(name = "funcionario_cd_id")
 	private Integer idFuncionario;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "funcionario_tx_nome")
 	private String nomeFuncionario;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "funcionario_nu_cpf")
 	@Size(min = 11, max = 11)
-	private Integer cpfFuncionario;
+	private String cpfFuncionario;
 
 	@OneToMany(mappedBy = "funcionario")
 	private List<Produto> listaProdutos;
@@ -37,7 +37,7 @@ public class Funcionario {
 
 	}
 
-	public Funcionario(Integer idFuncionario, @NotBlank String nomeFuncionario, @NotBlank Integer cpfFuncionario) {
+	public Funcionario(Integer idFuncionario, @NotNull String nomeFuncionario, @NotNull String cpfFuncionario) {
 		super();
 		this.idFuncionario = idFuncionario;
 		this.nomeFuncionario = nomeFuncionario;
@@ -60,11 +60,11 @@ public class Funcionario {
 		this.nomeFuncionario = nomeFuncionario;
 	}
 
-	public Integer getCpfFuncionario() {
+	public String getCpfFuncionario() {
 		return cpfFuncionario;
 	}
 
-	public void setCpfFuncionario(Integer cpfFuncionario) {
+	public void setCpfFuncionario(String cpfFuncionario) {
 		this.cpfFuncionario = cpfFuncionario;
 	}
 

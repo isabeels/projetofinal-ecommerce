@@ -4,7 +4,7 @@ public class FuncionarioDTO {
 
 	private Integer idFuncionario;
 	private String nomeFuncionario;
-	private Integer cpfFuncionario;
+	private String cpfFuncionario;
 	
 	public Integer getIdFuncionario() {
 		return idFuncionario;
@@ -18,10 +18,10 @@ public class FuncionarioDTO {
 	public void setNomeFuncionario(String nomeFuncionario) {
 		this.nomeFuncionario = nomeFuncionario;
 	}
-	public Integer getCpfFuncionario() {
+	public String getCpfFuncionario() {
 		return cpfFuncionario;
 	}
-	public void setCpfFuncionario(Integer cpfFuncionario) {
+	public void setCpfFuncionario(String cpfFuncionario) {
 		this.cpfFuncionario = cpfFuncionario;
 	}
 	

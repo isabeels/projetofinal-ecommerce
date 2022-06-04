@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,24 +26,24 @@ public class Cliente implements Serializable {
 	@Column(name = "cliente_cd_id")
 	private Integer idCliente;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "cliente_tx_nome")
 	private String nomeCliente;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "cliente_tx_login")
 	private String loginCliente;
 
-	@NotBlank
+	@NotNull
 	@Email
 	@Column(name = "cliente_tx_email")
 	private String emailCliente;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "cliente_tx_senha")
 	private String senhaCliente;
 
-	@NotBlank
+	@NotNull
 	@Size(min = 11, max = 11)
 	@Column(name = "cliente_nu_cpf")
 	private String cpfCliente;
@@ -53,11 +52,11 @@ public class Cliente implements Serializable {
 	@Column(name = "cliente_dt_nascimento")
 	private Date dataNasciCliente;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "cliente_tx_endereco")
 	private String enderecoCliente;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "cliente_tx_telefone")
 	private String telefoneCliente;
 

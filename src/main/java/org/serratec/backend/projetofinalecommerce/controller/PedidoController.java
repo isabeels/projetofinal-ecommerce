@@ -38,20 +38,15 @@ public class PedidoController {
 	}
 
 	@PostMapping("/salvar")
-	public ResponseEntity<String> salvarPedido(@RequestBody PedidoDTO pedidoDTO) throws PedidoException, EmailException {
-		return ResponseEntity.ok(pedidoService.salvar(pedidoDTO));
-	}
-
-	@PostMapping("/salvar-lista")
-	public ResponseEntity<Void> salvarListaPedido(@RequestBody List<PedidoDTO> listaPedido) {
-		pedidoService.salvarListaPedido(listaPedido);
+	public ResponseEntity<Void> salvarPedido(@RequestBody PedidoDTO pedidoDTO) throws PedidoException, EmailException {
+		pedidoService.salvar(pedidoDTO);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@PutMapping("/atualizar/{idPedido}")
-	public ResponseEntity<String> atualizarPedido(@PathVariable Integer idPedido,@RequestBody PedidoDTO pedidoDTO) throws PedidoException{
-		return ResponseEntity.ok(pedidoService.atualizar(idPedido, pedidoDTO));
-	}
+//	@PutMapping("/atualizar/{idPedido}")
+//	public ResponseEntity<String> atualizarPedido(@PathVariable Integer idPedido,@RequestBody PedidoDTO pedidoDTO) throws PedidoException{
+//		return ResponseEntity.ok(pedidoService.atualizar(idPedido, pedidoDTO));
+//	}
 
 	@DeleteMapping("/deletar/{idPedido}")
 	public ResponseEntity<String> deletarPorId(@PathVariable Integer idPedido) throws PedidoException {

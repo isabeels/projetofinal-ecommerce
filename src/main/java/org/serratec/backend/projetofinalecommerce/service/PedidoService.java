@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.mail.MessagingException;
+
 import org.serratec.backend.projetofinalecommerce.dto.PedidoDTO;
 import org.serratec.backend.projetofinalecommerce.dto.ProdutoPedidoDTO;
 import org.serratec.backend.projetofinalecommerce.entity.Pedido;
 import org.serratec.backend.projetofinalecommerce.entity.Produto;
+import org.serratec.backend.projetofinalecommerce.exceptions.EmailException;
 import org.serratec.backend.projetofinalecommerce.exceptions.PedidoException;
 import org.serratec.backend.projetofinalecommerce.repository.ClienteRepository;
 import org.serratec.backend.projetofinalecommerce.repository.PedidoRepository;
@@ -56,22 +59,38 @@ public class PedidoService {
 		return pedido;
 	}
 
-	public String salvar(PedidoDTO pedidoDTO) {
+	public String salvar(PedidoDTO pedidoDTO) throws EmailException, MessagingException {
+
+		String emailCliente = "";
+		String nomeCliente = "";
 
 		for (ProdutoPedidoDTO produtoPedido : pedidoDTO.getListaProdutoPedido()) {
 			Pedido pedido = new Pedido();
-			Produto produto = produtoRepository.findById(produtoPedido.getIdProduto()).get();
 
+			Produto produto = produtoRepository.findById(produtoPedido.getIdProduto()).get();
+			produtoPedido.setNomeProduto(produto.getNomeProduto());
+			
 			if (pedidoDTO.getOperacao().equals("venda")) {
 				produto.setQtdEstoque(produto.getQtdEstoque() - produtoPedido.getQuantidadeProduto());
 			}
-
 			if (pedidoDTO.getOperacao().equals("compra")) {
 				produto.setQtdEstoque(produto.getQtdEstoque() + produtoPedido.getQuantidadeProduto());
 			}
 			transformarDtoEmEntity(pedidoDTO, produtoPedido, pedido, produto);
 			pedidoRepository.save(pedido);
+
+			emailCliente = pedido.getCliente().getEmailCliente();
+			nomeCliente = pedido.getCliente().getNomeCliente();
+
+			if (produto.getQtdEstoque() <= 5) {
+				emailService.emailEsqtoque(pedido);
+			}
 		}
+
+		if (pedidoDTO.getOperacao().equals("venda")) {
+			emailService.emailPedido(pedidoDTO, emailCliente, nomeCliente);
+		}
+
 		return "O pedido foi emitido e salvo";
 	}
 
@@ -91,25 +110,6 @@ public class PedidoService {
 		}
 		return listaPedidoDTO;
 	}
-
-//	public String atualizar(Integer idPedido, PedidoDTO pedidoDTO) throws PedidoException {
-//		Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
-//		Pedido pedidoBanco = new Pedido();
-//		if (pedido.isPresent()) {
-//			pedidoBanco = pedido.get();
-//			if (pedidoDTO.getDataPedido() != null) {
-//				pedidoBanco.setDataPedido(pedidoDTO.getDataPedido());
-//			}
-//			if (pedidoDTO.getValorTotalPedido() != null) {
-//				pedidoBanco.setValorTotalPedido(pedidoDTO.getValorTotalPedido());
-//
-//			}
-//
-//			pedidoRepository.save(pedidoBanco);
-//			return "O cartao com id " + pedidoBanco.getIdPedido() + " foi atualizado";
-//		}
-//		throw new PedidoException("Não foi possível atualizar o pedido");
-//	}
 
 	public String deletarPorId(Integer idPedido) throws PedidoException {
 		Optional<Pedido> pedido = pedidoRepository.findById(idPedido);

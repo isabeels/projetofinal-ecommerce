@@ -4,6 +4,7 @@ public class ProdutoPedidoDTO {
 
 	private Double valorUnitario;
 	private Integer quantidadeProduto;
+	private String nomeProduto;
 	private Integer idProduto;
 	
 	public ProdutoPedidoDTO() {}
@@ -25,6 +26,14 @@ public class ProdutoPedidoDTO {
 	}
 	public void setIdProduto(Integer idProduto) {
 		this.idProduto = idProduto;
+	}
+
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
 	}
 	
 }

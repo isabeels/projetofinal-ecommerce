@@ -27,9 +27,9 @@
 </p>
 
 ### Sobre
-Software para controle de estoque de produtos, clientes, funcionários e vendas. As vendas serão feitas pela internet.
+Projeto desenvolvido para a disciplina Desenvolvimento de API Restful da residência em TIC/Software do SERRATEC. O sistema foi criado para o controle de estoque de produtos, clientes, funcionários e vendas. As vendas serão feitas pela internet.
 
-### 👉 Requisitos
+### 🔨 Funcionalidades
 
 - [x] O sistema deve ser capaz de armazenar informações sobre os produtos da empresa;
 - [x] Ao cadastrar o produto no sistema, os funcionários da empresa devem ser capazes de associá-lo à uma categoria;

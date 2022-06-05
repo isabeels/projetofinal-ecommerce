@@ -48,6 +48,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - Java (versão 17);
 - Spring Boot;
 - JWT;
+- Swagger;
 - Banco de Dados H2.
 
  

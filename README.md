@@ -13,7 +13,11 @@
    <a href="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white">
     <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white"  alt="JWT" />
   </a>
+    <a href="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white">
+    <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white"  alt="Swagger" />
+  </a>
 </p>
+
 
 <p align="center">
 • <a href="https://www.linkedin.com/in/isabelsantana2811/">Isabel Sant' Ana</a> •

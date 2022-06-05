@@ -18,14 +18,6 @@
   </a>
 </p>
 
-
-<p align="center">
-• <a href="https://www.linkedin.com/in/isabelsantana2811/">Isabel Sant' Ana</a> •
-<a href="https://www.linkedin.com/in/rosana-dantas-a1706910b/">Rosana Dantas</a> •
-<a href="https://www.linkedin.com/in/vin%C3%ADcius-soares-43238b144/">Vinicius Soares</a> •
-<a href="https://www.linkedin.com/in/gabriel-theophilo-32053a110/">Gabriel Theophilo</a> •
-</p>
-
 ### Sobre
 Projeto desenvolvido para a disciplina Desenvolvimento de API Restful da residência em TIC/Software do SERRATEC. O sistema foi criado para o controle de estoque de produtos, clientes, funcionários e vendas. As vendas serão feitas pela internet.
 
@@ -50,5 +42,11 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - JWT;
 - Swagger;
 - Banco de Dados H2.
+<br>
 
- 
+ <p align="center">
+desenvolvido por • <a href="https://www.linkedin.com/in/isabelsantana2811/">Isabel Sant' Ana</a> •
+<a href="https://www.linkedin.com/in/rosana-dantas-a1706910b/">Rosana Dantas</a> •
+<a href="https://www.linkedin.com/in/vin%C3%ADcius-soares-43238b144/">Vinicius Soares</a> •
+<a href="https://www.linkedin.com/in/gabriel-theophilo-32053a110/">Gabriel Theophilo</a> •
+</p>

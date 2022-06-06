@@ -1,6 +1,6 @@
 package org.serratec.backend.projetofinalecommerce.dto;
 
-import java.io.Serializable;
+
 
 public class EnderecoDTO  {
 

@@ -26,7 +26,7 @@ public class Produto implements Serializable {
 	private Integer idProduto;
 
 	@NotNull
-	@Column(name = "produto_tx_nome")
+	@Column(name = "produto_tx_nome", unique = true)
 	private String nomeProduto;
 
 	@NotNull

@@ -1,7 +1,6 @@
 package org.serratec.backend.projetofinalecommerce.controller;
 
-import io.swagger.models.Response;
-import org.apache.catalina.webresources.ClasspathURLStreamHandler;
+
 import org.serratec.backend.projetofinalecommerce.dto.ClienteDTO;
 import org.serratec.backend.projetofinalecommerce.exceptions.ClienteException;
 import org.serratec.backend.projetofinalecommerce.service.ClienteService;

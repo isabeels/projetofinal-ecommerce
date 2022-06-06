@@ -26,7 +26,7 @@ public class Funcionario {
 	private String nomeFuncionario;
 
 	@NotNull
-	@Column(name = "funcionario_nu_cpf")
+	@Column(name = "funcionario_nu_cpf", unique = true)
 	@Size(min = 11, max = 11)
 	private String cpfFuncionario;
 

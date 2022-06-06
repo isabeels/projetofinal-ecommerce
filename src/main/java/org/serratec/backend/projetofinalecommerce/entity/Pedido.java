@@ -42,7 +42,7 @@ public class Pedido {
 	private String operacao;
 
 	@NotNull
-	@Column(name = "pedido_nu_nota_fiscal")
+	@Column(name = "pedido_nu_nota_fiscal", unique = true)
 	private Integer pedidoNotaFiscal;
 
 	@OneToOne

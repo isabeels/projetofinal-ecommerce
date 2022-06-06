@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.Serializable;
+
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 public class ViaCepController {
         @GetMapping(value = "/getCep/{cep}")
-        public ResponseEntity<EnderecoDTO> dtoObterCep(@PathVariable(name = "cep") String cep) {
+        public ResponseEntity<EnderecoDTO> ObterCep(@PathVariable(name = "cep") String cep) {
 
             RestTemplate restTemplate = new RestTemplate();
 

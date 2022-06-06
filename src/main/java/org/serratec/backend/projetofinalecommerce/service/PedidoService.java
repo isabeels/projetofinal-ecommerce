@@ -8,6 +8,7 @@ import javax.mail.MessagingException;
 
 import org.serratec.backend.projetofinalecommerce.dto.PedidoDTO;
 import org.serratec.backend.projetofinalecommerce.dto.ProdutoPedidoDTO;
+import org.serratec.backend.projetofinalecommerce.dto.RelatorioDTO;
 import org.serratec.backend.projetofinalecommerce.entity.Pedido;
 import org.serratec.backend.projetofinalecommerce.entity.Produto;
 import org.serratec.backend.projetofinalecommerce.exceptions.EmailException;
@@ -59,7 +60,7 @@ public class PedidoService {
 		return pedido;
 	}
 
-	public String salvar(PedidoDTO pedidoDTO) throws Exception {
+	public String salvar(PedidoDTO pedidoDTO) throws PedidoException, EmailException, MessagingException {
 
 		String emailCliente = "";
 		String nomeCliente = "";
@@ -74,7 +75,7 @@ public class PedidoService {
 				if (produto.getQtdEstoque() >= produtoPedido.getQuantidadeProduto()) {
 					produto.setQtdEstoque(produto.getQtdEstoque() - produtoPedido.getQuantidadeProduto());
 				} else {
-					throw new Exception("Não foi possível efetuar este pedido. Quantidade em estoque insuficiente");
+					throw new PedidoException("Não foi possível efetuar este pedido. Quantidade em estoque insuficiente");
 				}
 			}
 			if (pedidoDTO.getOperacao().equals("compra")) {
@@ -123,5 +124,8 @@ public class PedidoService {
 		}
 		throw new PedidoException("O id informado não foi encontrado!");
 	}
-
+	
+	public List<RelatorioDTO> relatorioProdutosMaisVendidos(){
+		return pedidoRepository.relatorioProdutosMaisVendidos();
+	}
 }

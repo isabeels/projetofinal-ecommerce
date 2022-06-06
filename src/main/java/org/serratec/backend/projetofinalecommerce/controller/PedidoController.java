@@ -5,6 +5,7 @@ import java.util.List;
 import javax.mail.MessagingException;
 
 import org.serratec.backend.projetofinalecommerce.dto.PedidoDTO;
+import org.serratec.backend.projetofinalecommerce.dto.RelatorioDTO;
 import org.serratec.backend.projetofinalecommerce.exceptions.EmailException;
 import org.serratec.backend.projetofinalecommerce.exceptions.PedidoException;
 import org.serratec.backend.projetofinalecommerce.service.PedidoService;
@@ -37,7 +38,7 @@ public class PedidoController {
 	}
 
 	@PostMapping("/salvar")
-	public ResponseEntity<Void> salvarPedido(@RequestBody PedidoDTO pedidoDTO) throws Exception {
+	public ResponseEntity<Void> salvarPedido(@RequestBody PedidoDTO pedidoDTO) throws PedidoException, EmailException, MessagingException {
 		pedidoService.salvar(pedidoDTO);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
@@ -47,4 +48,8 @@ public class PedidoController {
 		return ResponseEntity.ok(pedidoService.deletarPorId(idPedido));
 	}
 
+	@GetMapping("/relatorio")
+	public ResponseEntity<List<RelatorioDTO>> relatorioProdutosMaisVendidos (){
+		return ResponseEntity.ok(pedidoService.relatorioProdutosMaisVendidos());
+	}
 }

@@ -1,7 +1,7 @@
 package org.serratec.backend.projetofinalecommerce.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -45,12 +45,12 @@ public class Cliente implements Serializable {
 
 	@NotNull
 	@Size(min = 11, max = 11)
-	@Column(name = "cliente_nu_cpf")
+	@Column(name = "cliente_nu_cpf", unique = true)
 	private String cpfCliente;
 
 	@NotNull
 	@Column(name = "cliente_dt_nascimento")
-	private Date dataNasciCliente;
+	private LocalDate dataNasciCliente;
 
 	@NotNull
 	@Column(name = "cliente_tx_endereco")
@@ -69,7 +69,7 @@ public class Cliente implements Serializable {
 	}
 
 	public Cliente(Integer idCliente, String nomeCliente, String loginCliente, String emailCliente, String cpfCliente,
-			Date dataNasciCliente, String enderecoCliente, String telefoneCliente) {
+			LocalDate dataNasciCliente, String enderecoCliente, String telefoneCliente) {
 		this.idCliente = idCliente;
 		this.nomeCliente = nomeCliente;
 		this.loginCliente = loginCliente;
@@ -128,11 +128,11 @@ public class Cliente implements Serializable {
 		this.cpfCliente = cpfCliente;
 	}
 
-	public Date getDataNasciCliente() {
+	public LocalDate getDataNasciCliente() {
 		return dataNasciCliente;
 	}
 
-	public void setDataNasciCliente(Date dataNasciCliente) {
+	public void setDataNasciCliente(LocalDate dataNasciCliente) {
 		this.dataNasciCliente = dataNasciCliente;
 	}
 
@@ -160,6 +160,5 @@ public class Cliente implements Serializable {
 		this.listaPedido = listaPedido;
 	}
 
-	// Getters e Setters
 
 }
